@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Bookmarks (CRUDS App)</title>
+    <link rel="icon" href="book-bookmark-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+      @font-face {font-family: s; src: url(s.woff2);}
+      ::selection {background: #75b798;}
+      body {color: #212529; font-family: 'Encode Sans Expanded', sans-serif;
+        min-height: calc(100vh - 2.75em); margin: 0 12px 2.75em;
+        display: flex; flex-flow: column; justify-content: center;}
+      @media (width>575px) {body {width: 516px; margin-inline: auto;}}
+      @media (width>767px) {body {width: 696px;}}
+      @media (width>991px) {body {width: 936px;}}
+      @media (width>1199px) {body {width: 1116px;}}
+      @media (width>1399px) {body {width: 1296px;}}
+      h1 {font-family: Pacifico; font-weight: 400; font-size: 2.5em;
+        width: fit-content; margin-inline: auto; position: relative;}
+      h1::before {content: ''; background: #75b798; position: absolute;
+        inset: 1.05em 0 .3em; z-index: -1; transition: .3s;}
+      h1:hover::before {top: .68em;}
+      :is(label,table button)::before {font-family: s;}
+      label:has([placeholder*=G])::before {content: '\e0bb';}
+      label:has([placeholder*=c])::before {content: '\f0c1';}
+      .i {line-height: 1.5; width: 100%; padding: .625em;
+        border: .0625em solid #ced4da;
+        box-sizing: border-box; transition: border-color .15s;}
+      label>.i {margin-block: .3125em .625em;}
+      .i:focus {border-color: #000; outline: 0;}
+      input, textarea, button {font-family: inherit; font-size: 1em;}
+      button:enabled {cursor: pointer;}
+      a, button {-webkit-tap-highlight-color: #0000; outline-color: inherit;}
+      .b {line-height: 1.5; padding: .375em .75em; transition: .15s;}
+      .bb {color: #fff; background: #198754; font-family: Pacifico;
+        font-size: 1.2em; width: 100%; border: .125em solid #0000;}
+      .bb:focus-visible {border-color: #000; outline: 0;}
+      .bb:enabled:hover {background: #157347;}
+      .bb:enabled:active {background: #13653f;}
+      .dg {box-shadow: .3em .3em .3em #0003; font-size: .9em; line-height: 1.5;
+        max-width: 25em; padding: .8333em .5556em .8333em 2.7083em;
+        border: .0694em solid #808080; border-radius: .2778em;}
+      .dg::before {content: '\21'; color: #fff; background: #ff8c00;
+        font-weight: 700; text-align: center; line-height: 1.7361em;
+        width: 1.7361em; border-radius: .2083em;
+        position: absolute; left: .5556em;}
+      [role=search]:not(:has([hidden])) {margin-block: 1.75em .75em;}
+      div {overflow: auto;}
+      table {width: 100%; border-collapse: collapse;}
+      tbody>:nth-child(odd) {background: #e9ecef;}
+      th, td {padding: .75em;}
+      td {text-align: center;}
+      a:not(:active) {color: #36c;}
+      a:visited:not(:active) {color: #795cb2;}
+      a {text-decoration: none;}
+      table button {white-space: nowrap;}
+      .be, .bd {border-radius: .375em;}
+      .be {color: #17a2b8; background: 0;
+        border: .0625em solid #17a2b8; outline-color: #0baccc;}
+      .be:enabled:hover {color: #fff; background: #17a2b8;}
+      .be:enabled:active {color: #fff; background: #117c8d;
+        border-color: #117c8d;}
+      .be::before {content: '\f044';}
+      .bd {color: #dc3545; background: 0;
+        border: .0625em solid #dc3545; outline-color: #e15361;}
+      .bd:enabled:hover {color: #fff; background: #dc3545;}
+      .bd:enabled:active {color: #fff; background: #a52834;
+        border-color: #a52834;}
+      .bd::before {content: '\f1f8';}
+    </style>
+  </head>
+  <body>
+    <h1>Bookmarker</h1>
+    <form>
+      <label> Name<input placeholder="e.g. Google" class="i"></label>
+      <dialog class="dg"></dialog>
+      <label> URL<input placeholder="e.g. google.com" class="i"></label>
+      <button class="b bb">Bookmark</button>
+    </form>
+    <form role="search">
+      <input type="search" placeholder="Search" class="i">
+    </form>
+    <div><table></table></div>
+    <script>
+      const f=document.forms[0], I=document.querySelectorAll('.i'),
+        d=document.querySelector('.dg'), b=document.querySelector('.bb'),
+        t=document.querySelector('table'),
+        B=localStorage.getItem('B')?JSON.parse(localStorage.getItem('B')):[];
+      let i=B.length;
+      function r() {localStorage.setItem('B',JSON.stringify(B));
+        i=B.length; f.reset(); b.textContent='Bookmark'; T(I[2].value);}
+      function T(s) {if (B.length>0) {let R=''; for (let i=0; i<B.length; i++)
+            if (!s||RegExp(s,'i').test(B[i].n)) R+=`<tr><td>${i+1}</td><td><a href=${(/^https?:\/\//.test(B[i].l)?'':'https://')+B[i].l} target="_blank">${B[i].n}</a></td><td><button type="button" class="b be" data-i=${i}> Edit</button></td><td><button type="button" class="b bd" data-i=${i}> Delete</button></td></tr>`;
+          t.innerHTML=R;
+          for (const e of document.querySelectorAll('.be'))
+            e.addEventListener('click',()=>{i=e.dataset.i
+              I[0].value=B[i].n; I[1].value=B[i].l; b.textContent='Save';});
+          for (const e of document.querySelectorAll('.bd'))
+            e.addEventListener('click',()=>{B.splice(e.dataset.i,1); r();});
+          I[2].removeAttribute('hidden');}
+        else {t.innerHTML=''; I[2].setAttribute('hidden','');}}
+      function w() {d.show(); I[1].focus(); setTimeout(()=>d.close(),4000);}
+      f.addEventListener('submit',e=>{e.preventDefault();
+        if (/^(?:https?:\/\/)?(?:(?:(?:[a-z\d](?:[a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|(?:(?:\d{1,3}\.){3}\d{1,3}))(?:\:\d+)?(?:\/[-a-z\d%_.~+]*)*(?:\?[;&a-z\d%_.~+=-]*)?(?:\#[-a-z\d_]*)?$/i
+        .test(I[1].value))
+          {for (const e of B) if (I[1].value==e.l && e.l!=B[i]?.l)
+            {d.textContent='Bookmarked'; w(); return;}
+          B.splice(i,1,{n:I[0].value,l:I[1].value}); r();}
+        else {d.textContent='Invalid'; w();}});
+      I[2].addEventListener('input',()=>T(I[2].value)); T();
+    </script>
+  </body>
+</html>
