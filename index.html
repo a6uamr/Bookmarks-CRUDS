@@ -10,7 +10,7 @@
       @font-face {font-family: s; src: url(s.woff2);}
       ::selection {background: #75b798;}
       body {color: #212529; font-family: 'Encode Sans Expanded', sans-serif;
-        min-height: calc(100vh - 2.75em); margin: 0 12px 2.75em;
+        min-height: calc(100dvh - 2.75em); margin: 0 12px 2.75em;
         display: flex; flex-flow: column; justify-content: center;}
       @media (width>575px) {body {width: 516px; margin-inline: auto;}}
       @media (width>767px) {body {width: 696px;}}
@@ -92,7 +92,7 @@
       function r() {localStorage.setItem('B',JSON.stringify(B));
         i=B.length; f.reset(); b.textContent='Bookmark'; T(I[2].value);}
       function T(s) {if (B.length>0) {let R=''; for (let i=0; i<B.length; i++)
-            if (!s||RegExp(s,'i').test(B[i].n)) R+=`<tr><td>${i+1}</td><td><a href=${(/^https?:\/\//.test(B[i].l)?'':'https://')+B[i].l} target="_blank">${B[i].n}</a></td><td><button type="button" class="b be" data-i=${i}> Edit</button></td><td><button type="button" class="b bd" data-i=${i}> Delete</button></td></tr>`;
+            if (!s||RegExp(s,'i').test(B[i].n)) R+=`<tr><td>${i+1}</td><td><a href=${(/^https?:\/\//.test(B[i].l)?'':'http://')+B[i].l} target="_blank">${B[i].n}</a></td><td><button type="button" class="b be" data-i=${i}> Edit</button></td><td><button type="button" class="b bd" data-i=${i}> Delete</button></td></tr>`;
           t.innerHTML=R;
           for (const e of document.querySelectorAll('.be'))
             e.addEventListener('click',()=>{i=e.dataset.i
