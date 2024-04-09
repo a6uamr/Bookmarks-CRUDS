@@ -29,14 +29,13 @@
         border: .0625em solid #ced4da;
         box-sizing: border-box; transition: border-color .15s;}
       label>.i {margin-block: .3125em .625em;}
-      .i:focus {border-color: #000; outline: 0;}
+      :is(.i,.bb):focus-visible {border-color: #000; outline: 0;}
       input, textarea, button {font-family: inherit; font-size: 1em;}
       button:enabled {cursor: pointer;}
       a, button {-webkit-tap-highlight-color: #0000; outline-color: inherit;}
       .b {line-height: 1.5; padding: .375em .75em; transition: .15s;}
       .bb {color: #fff; background: #198754; font-family: Pacifico;
         font-size: 1.2em; width: 100%; border: .125em solid #0000;}
-      .bb:focus-visible {border-color: #000; outline: 0;}
       .bb:enabled:hover {background: #157347;}
       .bb:enabled:active {background: #13653f;}
       .dg {box-shadow: .3em .3em .3em #0003; font-size: .9em; line-height: 1.5;
