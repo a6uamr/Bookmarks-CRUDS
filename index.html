@@ -19,24 +19,25 @@
       @media (width>1399px) {body {width: 1296px;}}
       h1 {font-family: Pacifico; font-weight: 400; font-size: 2.5em;
         width: fit-content; margin-inline: auto; position: relative;}
-      h1::before {content: ''; background: #75b798; position: absolute;
-        inset: 1.05em 0 .3em; z-index: -1; transition: .3s;}
+      h1::before {content: ''; background: #75b798; border-radius:0 0 .12em .12em;
+        position: absolute; inset: 1.05em 0 .3em; z-index: -1; transition: .3s;}
       h1:hover::before {top: .68em;}
       :is(label,table button)::before {font-family: s;}
       label:has([placeholder*=G])::before {content: '\e0bb';}
       label:has([placeholder*=c])::before {content: '\f0c1';}
-      .i {line-height: 1.5; width: 100%; padding: .625em;
-        border: .0625em solid #ced4da;
-        box-sizing: border-box; transition: border-color .15s;}
-      label>.i {margin-block: .3125em .625em;}
+      .i {line-height: 1.5; width: 100%; padding: .625em .7143em;
+        border: .0625em solid #ced4da; box-sizing: border-box;
+        border-radius: .375em; transition: border-color .15s;}
+      label>.i {margin-block: .3125em .75em;}
       .i:focus {box-shadow: 0 0 0 .2em #7bff0040;
         border-color: #80bdff; outline: 0;}
       input, textarea, button {font-family: inherit; font-size: 1em;}
       button:enabled {cursor: pointer;}
       a, button {-webkit-tap-highlight-color: #0000;}
-      .b {line-height: 1.5; padding: .375em .75em; transition: .15s, outline 0s;}
+      .b {line-height: 1.5; padding: .375em .75em;
+        border-radius: .375em; transition: .15s, outline 0s;}
       .bb {color: #fff; background: #198754; font-family: Pacifico;
-        font-size: 1.2em; width: 100%; border: .125em solid #0000;}
+        font-size: 1.167em; width: 100%; border: .125em solid #0000;}
       .bb:focus-visible {outline: .125em solid #3c996e;}
       .bb:enabled:hover {background: #157347;}
       .bb:enabled:active {background: #13653f;}
@@ -53,12 +54,15 @@
       tbody>:nth-child(odd) {background: #f0f2f5;}
       th, td {padding: .75em;}
       td {text-align: center;}
+      tr:first-child>td:first-child {border-top-left-radius: .44em;}
+      tr:first-child>td:last-child {border-top-right-radius: .44em;}
+      tr:last-child>td:first-child {border-bottom-left-radius: .44em;}
+      tr:last-child>td:last-child {border-bottom-right-radius: .44em;}
       a:not(:active) {color: #36c;}
       a:visited:not(:active) {color: #795cb2;}
       a {text-decoration: none;}
       a:focus-visible {outline: .125em solid;}
       table button {white-space: nowrap;}
-      .be, .bd {border-radius: .375em;}
       .be {color: #17a2b8; background: 0; border: .0625em solid #17a2b8;}
       .be:focus-visible {outline: .0625em solid #0baccc;}
       .be:enabled:hover {color: #fff; background: #17a2b8;}
