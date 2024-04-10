@@ -50,7 +50,7 @@
       [role=search]:not(:has([hidden])) {margin-block: 1.75em .75em;}
       div {overflow: auto;}
       table {width: 100%; border-collapse: collapse;}
-      tbody>:nth-child(odd) {background: #e9ecef;}
+      tbody>:nth-child(odd) {background: #f0f2f5;}
       th, td {padding: .75em;}
       td {text-align: center;}
       a:not(:active) {color: #36c;}
@@ -97,7 +97,7 @@
             if (!s||RegExp(s,'i').test(B[i].n)) R+=`<tr><td>${i+1}</td><td><a href=${(/^https?:\/\//.test(B[i].l)?'':'http://')+B[i].l} target="_blank">${B[i].n}</a></td><td><button type="button" class="b be" data-i=${i}> Edit</button></td><td><button type="button" class="b bd" data-i=${i}> Delete</button></td></tr>`;
           t.innerHTML=R;
           for (const e of document.querySelectorAll('.be'))
-            e.addEventListener('click',()=>{i=e.dataset.i
+            e.addEventListener('click',()=>{i=e.dataset.i; I[0].focus();
               I[0].value=B[i].n; I[1].value=B[i].l; b.textContent='Save';});
           for (const e of document.querySelectorAll('.bd'))
             e.addEventListener('click',()=>{B.splice(e.dataset.i,1); r();});
